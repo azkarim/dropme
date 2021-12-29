@@ -34,7 +34,7 @@ getHomeR = do
     let submission = Nothing :: Maybe FileForm
         handlerName = "getHomeR" :: Text
     allComments <- runDB $ getAllComments
-    allCreateds <- runDB $ getAllCreated
+    allFiles <- runDB $ getAllFiles
 
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
@@ -53,8 +53,8 @@ addTime min utct =
 
 -- receive a http request and check for expired files
 
-getAllCreated :: DB [Entity File]
-getAllCreated = selectList [] [Asc FileCreated]
+getAllFiles :: DB [Entity File]
+getAllFiles = selectList [] [Asc FileExpires]
 
 
 getAllComments :: DB [Entity Comment]
@@ -77,7 +77,7 @@ postHomeR = do
           return ()
        _ -> return ()
     allComments <- runDB $ getAllComments
-    allCreateds <- runDB $ getAllCreated
+    allFiles <- runDB $ getAllFiles
 
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds

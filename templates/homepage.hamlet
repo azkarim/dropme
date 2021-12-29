@@ -124,8 +124,8 @@
                        $forall comment <- allComments
                            <li>#{commentMessage $ entityVal comment}
                    <ul>
-                       $forall created <- allCreateds
-                          <li>#{utctToString $ fileCreated $ entityVal created}
+                       $forall file <- allFiles
+                          <li>#{utctToString $ fileExpires $ entityVal file}
     <hr>
 
     <!-- Testing
