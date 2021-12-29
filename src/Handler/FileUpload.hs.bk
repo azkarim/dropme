@@ -1,0 +1,14 @@
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeFamilies #-}
+
+module Handler.FileUpload where
+import Import
+
+getFileUploadR :: Handler Html
+getFileUploadR =
+    defaultLayout $ do
+        setTitle "FileUpload"
+        $(widgetFile "fileUpload")
