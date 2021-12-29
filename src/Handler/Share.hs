@@ -28,13 +28,6 @@ getShareR = do
         setTitle "Share a file"
         $(widgetFile "share")
 
-addTime :: Pico -> UTCTime -> UTCTime
-addTime min utct =
-  addUTCTime (secondsToNominalDiffTime (min * 60)) utct
-
-utctToString :: UTCTime -> String
-utctToString utct =
-  formatTime defaultTimeLocale "%H:%M" utct
 
 sampleForm :: Form FileForm
 sampleForm = renderBootstrap3 BootstrapBasicForm $ FileForm
@@ -42,12 +35,12 @@ sampleForm = renderBootstrap3 BootstrapBasicForm $ FileForm
     <*> areq textField textSettings Nothing
     -- Add attributes like the placeholder and CSS classes.
     where textSettings = FieldSettings
-            { fsLabel = "Name the file"
+            { fsLabel = "Description"
             , fsTooltip = Nothing
             , fsId = Nothing
             , fsName = Nothing
             , fsAttrs =
                 [ ("class", "form-control")
-                , ("placeholder", "File name")
+                , ("placeholder", "Description")
                 ]
             }

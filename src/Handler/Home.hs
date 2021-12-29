@@ -73,7 +73,7 @@ postHomeR = do
            --liftIO $ fileMove file "/sombin"
           uuid <- liftIO $ nextRandom
           created <- liftIO $ getCurrentTime
-          _ <- runDB $ insert (File (toString uuid) "hellofile" created (addTime 5 created))
+          --_ <- runDB $ insert (File (toString uuid) "hellofile" created (addTime 5 created))
           return ()
        _ -> return ()
     allComments <- runDB $ getAllComments

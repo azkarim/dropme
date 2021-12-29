@@ -20,6 +20,7 @@ Comment json -- Adding "json" causes ToJSON and FromJSON instances to be derived
 File
     uuid String
     filename String
+    desc String
     created UTCTime
     expires UTCTime
     deriving Eq

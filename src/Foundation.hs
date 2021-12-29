@@ -167,6 +167,7 @@ instance Yesod App where
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
     isAuthorized ShareR _ = return Authorized
+    isAuthorized SharedR _ = return Authorized
 
     -- example of adding a route as authorized
     --isAuthorized FileUploadR _ = return Authorized

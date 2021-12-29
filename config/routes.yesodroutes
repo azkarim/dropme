@@ -13,3 +13,4 @@
 
 /profile ProfileR GET
 share ShareR GET
+shared SharedR POST
