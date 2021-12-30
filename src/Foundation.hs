@@ -100,26 +100,29 @@ instance Yesod App where
     defaultLayout :: Widget -> Handler Html
     defaultLayout widget = do
         master <- getYesod
-        mmsg <- getMessage
+        --mmsg <- getMessage
 
-        muser <- maybeAuthPair
-        mcurrentRoute <- getCurrentRoute
+        --muser <- maybeAuthPair
+        --mcurrentRoute <- getCurrentRoute
 
         -- Get the breadcrumbs, as defined in the YesodBreadcrumbs instance.
-        (title, parents) <- breadcrumbs
+        --(title, parents) <- breadcrumbs
 
         -- Define the menu items of the header.
+        {--
         let menuItems =
                 [ NavbarLeft $ MenuItem
                     { menuItemLabel = "Home"
                     , menuItemRoute = ShareR
                     , menuItemAccessCallback = True
                     }
+                      {--
                 , NavbarLeft $ MenuItem
                     { menuItemLabel = "Profile"
                     , menuItemRoute = ProfileR
                     , menuItemAccessCallback = isJust muser
                     }
+                    --}
                 , NavbarRight $ MenuItem
                     { menuItemLabel = "Login"
                     , menuItemRoute = AuthR LoginR
@@ -131,12 +134,12 @@ instance Yesod App where
                     , menuItemAccessCallback = isJust muser
                     }
                 ]
+        --}
+        --let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]
+        --let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
 
-        let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]
-        let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
-
-        let navbarLeftFilteredMenuItems = [x | x <- navbarLeftMenuItems, menuItemAccessCallback x]
-        let navbarRightFilteredMenuItems = [x | x <- navbarRightMenuItems, menuItemAccessCallback x]
+        --let navbarLeftFilteredMenuItems = [x | x <- navbarLeftMenuItems, menuItemAccessCallback x]
+        --let navbarRightFilteredMenuItems = [x | x <- navbarRightMenuItems, menuItemAccessCallback x]
 
         -- We break up the default layout into two components:
         -- default-layout is the contents of the body tag, and
@@ -161,12 +164,9 @@ instance Yesod App where
         -> Handler AuthResult
     -- Routes not requiring authentication.
     isAuthorized (AuthR _) _ = return Authorized
-    isAuthorized CommentR _ = return Authorized
+    -- isAuthorized CommentR _ = return Authorized
     isAuthorized ShareR _ = return Authorized
-    isAuthorized FaviconR _ = return Authorized
-    isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
-    isAuthorized ShareR _ = return Authorized
     isAuthorized SharedR _ = return Authorized
     isAuthorized FetchR _ = return Authorized
     isAuthorized (DownloadR _) _ = return Authorized
@@ -176,7 +176,7 @@ instance Yesod App where
     
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
-    isAuthorized ProfileR _ = isAuthenticated
+    -- isAuthorized ProfileR _ = isAuthenticated
 
     -- This function creates static content files in the static folder
     -- and names them based on a hash of their content. This allows
@@ -224,7 +224,7 @@ instance YesodBreadcrumbs App where
         -> Handler (Text, Maybe (Route App))
     breadcrumb ShareR = return ("Home", Nothing)
     breadcrumb (AuthR _) = return ("Login", Just ShareR)
-    breadcrumb ProfileR = return ("Profile", Just ShareR)
+    --breadcrumb ProfileR = return ("Profile", Just ShareR)
     breadcrumb  _ = return ("home", Nothing)
 
 -- How to run database actions.

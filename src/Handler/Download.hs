@@ -10,7 +10,7 @@ module Handler.Download where
 import Import
 
 getDownloadR :: String -> Handler ()
-getDownloadR filename = do
+getDownloadR _ = do
   maybeUuid <- lookupGetParam "id"
   case maybeUuid of
     Just uuid -> sendFile typeOctet (generateFilePath $ unpack uuid)

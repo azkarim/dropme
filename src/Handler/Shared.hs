@@ -8,10 +8,7 @@ module Handler.Shared where
 
 import Import
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
-import Text.Julius (RawJS (..))
-import Database.Persist
-import Database.Persist.Sqlite
-import Data.Time (getCurrentTime, addUTCTime, secondsToNominalDiffTime) 
+import Data.Time (addUTCTime, secondsToNominalDiffTime) 
 import Data.Fixed
 import Data.UUID (UUID, toString)
 import Data.UUID.V4 (nextRandom)
@@ -24,7 +21,7 @@ data FileForm = FileForm
 
 postSharedR :: Handler Html
 postSharedR = do
-  ((result, formWidget), formEnctype) <- runFormPost sampleForm
+  ((result, _), _) <- runFormPost sampleForm
   uuid <- liftIO $ nextRandom
   case result of
      FormSuccess (FileForm file desc) -> do
@@ -71,8 +68,8 @@ sampleForm = renderBootstrap3 BootstrapBasicForm $ FileForm
 
 -- Utility function
 addTime :: Pico -> UTCTime -> UTCTime
-addTime min utct =
-  addUTCTime (secondsToNominalDiffTime (min * 60)) utct
+addTime minute utct =
+  addUTCTime (secondsToNominalDiffTime (minute * 60)) utct
 
 utctToString :: UTCTime -> String
 utctToString utct =

@@ -7,13 +7,6 @@
 module Handler.Share where
 import Import
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
-import Text.Julius (RawJS (..))
-import Database.Persist
-import Database.Persist.Sqlite
-import Data.Time (getCurrentTime, addUTCTime, secondsToNominalDiffTime) 
-import Data.Fixed
-import Data.UUID (toString)
-import Data.UUID.V4 (nextRandom)
 
 -- Define our data that will be used for creating the form.
 data FileForm = FileForm
