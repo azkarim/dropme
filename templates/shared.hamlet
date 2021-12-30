@@ -1,1 +1,7 @@
-<p>File #{toString uuid} uploaded! Share the following link
+<div .w-full.flex.justify-center.items-center.text-white>
+    <div .w-8/12.mx-auto.bg-slate-700.p-10.rounded-lg>
+        <h1 .text-6xl>File Uploaded
+        <div>
+            <h5 .p-6>Share the following link to download
+            <div .p-6.bg-gray-100.rounded-md>
+                <em .text-black>http://localhost:3000/fetch?id=#{toString uuid}

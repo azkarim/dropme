@@ -1,8 +1,11 @@
 <div .row>
-    <div .col-lg-6>
+    <div .col-lg-8>
         <div .bs-callout bs-callout-info well>
             <form .form-horizontal method=post action=@{SharedR} enctype=#{formEnctype}>
                 ^{formWidget}
 
-                <button .btn.btn-primary type="submit">
+                <button .btn.btn-primary .bg-slate-700 type="submit">
                     Upload it!
+
+
+

@@ -25,6 +25,8 @@ getShareR :: Handler Html
 getShareR = do
     (formWidget, formEnctype) <- generateFormPost sampleForm
     defaultLayout $ do
+        --addScriptRemote "https://cdn.tailwindcss.com"
+        --addStylesheet $ StaticR css_main_css
         setTitle "Share a file"
         $(widgetFile "share")
 

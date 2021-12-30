@@ -8,17 +8,12 @@
 module Handler.Download where
 
 import Import
-import System.Directory
 
 getDownloadR :: String -> Handler ()
 getDownloadR filename = do
-  let path_ = generateFilePath filename
-  _ <- sendFile typeOctet path_
-  maybeParam <- lookupGetParam "id"
-  case maybeParam of
-    Just param -> do
-      let newPath = generateFilePath $ unpack param
-      liftIO $ renamePath path_ newPath
+  maybeUuid <- lookupGetParam "id"
+  case maybeUuid of
+    Just uuid -> sendFile typeOctet (generateFilePath $ unpack uuid)
     Nothing -> return ()
 
 generateFilePath :: String -> FilePath
