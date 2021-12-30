@@ -112,7 +112,7 @@ instance Yesod App where
         let menuItems =
                 [ NavbarLeft $ MenuItem
                     { menuItemLabel = "Home"
-                    , menuItemRoute = HomeR
+                    , menuItemRoute = ShareR
                     , menuItemAccessCallback = True
                     }
                 , NavbarLeft $ MenuItem
@@ -162,7 +162,7 @@ instance Yesod App where
     -- Routes not requiring authentication.
     isAuthorized (AuthR _) _ = return Authorized
     isAuthorized CommentR _ = return Authorized
-    isAuthorized HomeR _ = return Authorized
+    isAuthorized ShareR _ = return Authorized
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
@@ -222,9 +222,9 @@ instance YesodBreadcrumbs App where
     breadcrumb
         :: Route App  -- ^ The route the user is visiting currently.
         -> Handler (Text, Maybe (Route App))
-    breadcrumb HomeR = return ("Home", Nothing)
-    breadcrumb (AuthR _) = return ("Login", Just HomeR)
-    breadcrumb ProfileR = return ("Profile", Just HomeR)
+    breadcrumb ShareR = return ("Home", Nothing)
+    breadcrumb (AuthR _) = return ("Login", Just ShareR)
+    breadcrumb ProfileR = return ("Profile", Just ShareR)
     breadcrumb  _ = return ("home", Nothing)
 
 -- How to run database actions.
@@ -244,10 +244,10 @@ instance YesodAuth App where
 
     -- Where to send a user after successful login
     loginDest :: App -> Route App
-    loginDest _ = HomeR
+    loginDest _ = ShareR
     -- Where to send a user after logout
     logoutDest :: App -> Route App
-    logoutDest _ = HomeR
+    logoutDest _ = ShareR
     -- Override the above two destinations when a Referer: header is present
     redirectToReferer :: App -> Bool
     redirectToReferer _ = True

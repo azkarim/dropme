@@ -1,6 +1,0 @@
-#shared-card {
-  width: 100%;
-  height: auto;
-  flex: row;
-  color: red
-}

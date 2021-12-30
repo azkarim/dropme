@@ -7,12 +7,13 @@
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
-/ HomeR GET POST
+-- / HomeR GET POST
+/ ShareR GET
 
 /comments CommentR POST
 
 /profile ProfileR GET
-share ShareR GET
+-- share ShareR GET
 shared SharedR POST
 /fetch FetchR GET
 /download/#String DownloadR GET
